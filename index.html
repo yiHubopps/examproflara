@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador 3D — Campo Magnético</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Babylon.js -->
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+</head>
+
+<body>
+
+<header>
+  <h1>Campo Magnético alrededor de un conductor curvado - derivadas vectoriales y rotacional</h1>
+  <p>
+    Materia - Cálculo de Varias Variables ·  
+    Alumno - Jorge Lidio Barragán Villanueva ·
+    Profesor - Javier Garcia Lara
+  </p>
+</header>
+
+<div id="layout">
+  <aside id="controls">
+    <h2>Parámetros de simulación</h2>
+
+    <label>Intensidad del campo (I)</label>
+    <input type="range" id="intensity" min="0.2" max="3" step="0.1" value="1">
+
+    <label>Radio del conductor (R)</label>
+    <input type="range" id="radius" min="1" max="4" step="0.2" value="2">
+
+    <label>Densidad del campo</label>
+    <input type="range" id="density" min="5" max="25" step="1" value="12">
+
+    <label>Escala visual de flechas</label>
+    <input type="range" id="scale" min="0.5" max="3" step="0.1" value="1.5">
+
+    <button id="update">Actualizar simulación</button>
+
+    <!-- MODELO MATEMÁTICO -->
+    <div class="box">
+      <h3>Modelo matemático</h3>
+      <p>
+        El comportamiento del campo magnético generado por un conductor con
+        corriente se modela mediante la <b>Ley de Biot–Savart</b>:
+      </p>
+
+      <div class="formula">
+        <code>
+          d𝐁 = (μ₀ / 4π) · (I · d𝐥 × r̂) / r²
+        </code>
+      </div>
+
+      <p>
+        Donde <b>I</b> es la corriente eléctrica, <b>d𝐥</b> el elemento del
+        conductor y <b>r</b> la distancia desde el conductor al punto de
+        observación.
+      </p>
+      <p>
+        En esta simulación se utiliza una aproximación discreta del campo,
+        cumpliendo la condición <b>∇·B = 0</b>.
+      </p>
+    </div>
+
+    <!-- DESCRIPCIÓN DEL PROBLEMA -->
+    <div class="box">
+      <h3>Descripción del problema</h3>
+      <p>
+        Se estudia el campo magnético generado por un conductor curvo en el
+        espacio tridimensional.
+      </p>
+      <p>
+        Las flechas representan la dirección y magnitud del campo magnético,
+        el cual rodea al conductor formando líneas cerradas de acuerdo con
+        el sentido de la corriente.
+      </p>
+    </div>
+
+    <!-- USO -->
+    <div class="box">
+      <h3>Uso del simulador</h3>
+      <ul>
+        <li>Modificar los parámetros del conductor.</li>
+        <li>Observar los cambios en el campo magnético 3D.</li>
+        <li>Analizar intensidad, dirección y simetría del campo.</li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <main>
+    <canvas id="renderCanvas"></canvas>
+  </main>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
